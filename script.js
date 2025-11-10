@@ -276,3 +276,24 @@ function setupKeyboard() {
         }
     });
 }
+
+function setupDragEvents() {
+    document.addEventListener('dragover', (e) => {
+        if (draggedCard) {
+            dragCoords.textContent = `X:${e.clientX} Y:${e.clientY}`;
+        }
+        e.preventDefault();
+    });
+
+    preview.addEventListener('dragover', (e) => e.preventDefault());
+
+    preview.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text/plain');
+        const index = Number(data);
+        if (!Number.isNaN(index)) {
+            droppedIntoPreview = true;
+            setActive(index);
+        }
+    });
+}
