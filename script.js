@@ -39,3 +39,40 @@ function init() {
     setupKeyboard();
     setupDragEvents();
 }
+
+function resetGallery() {
+    if (observer) observer.disconnect();
+    loadedCount = 0;
+    cardGrid.innerHTML = '';
+    loadBatch();
+    activeIndex = -1;
+    clearPreview();
+}
+
+function loadBatch() {
+    const fragment = document.createDocumentFragment();
+    const end = Math.min(loadedCount + batchSize, images.length);
+    for (let i = loadedCount; i < end; i++) {
+        fragment.appendChild(createCard(i));
+    }
+    cardGrid.appendChild(fragment);
+    loadedCount = end;
+
+    if (loadedCount < images.length) {
+        const last = cardGrid.lastElementChild;
+        if (last) observer.observe(last);
+    } else {
+        toggleScrollTop();
+    }
+}
+
+function setupIntersectionObserver() {
+    observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                observer.unobserve(entry.target);
+                if (loadedCount < images.length) loadBatch();
+            }
+        });
+    }, {root: gallery, threshold: 0.5});
+}
