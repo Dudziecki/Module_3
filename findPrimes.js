@@ -45,7 +45,9 @@ function findPrimes(start, end) {
             console.log(`Время выполнения: ${time} мс`);
         }
     }
+
     window.lastProgress = 0;
     processChunk();
 }
-findPrimes(1,100000000)
+
+findPrimes(1, 100000000);
