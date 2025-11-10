@@ -116,3 +116,69 @@ function createCard(index) {
 
     return card;
 }
+
+function setActive(index) {
+    if (index < 0 || index >= images.length) return;
+    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+    activeIndex = index;
+    const card = cardGrid.querySelector(`.card[data-index="${index}"]`);
+    if (card) card.classList.add('active');
+    renderPreview(images[index], index);
+    updateNavButtons();
+}
+
+function renderPreview(imgData, index) {
+    preview.innerHTML = '';
+    const container = document.createElement('div');
+    container.className = 'preview-image-container';
+
+    const img = document.createElement('img');
+    img.src = imgData.src;
+    img.alt = imgData.name;
+
+    const close = document.createElement('div');
+    close.className = 'close-btn';
+    close.textContent = '╳';
+    close.addEventListener('click', clearPreview);
+
+    container.appendChild(img);
+    container.appendChild(close);
+    preview.appendChild(container);
+
+    const nav = createNavButtons(index);
+    preview.appendChild(nav);
+}
+
+function createNavButtons(index) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'nav-buttons';
+
+    const prev = document.createElement('button');
+    prev.className = 'nav-btn';
+    prev.textContent = '←';
+    prev.disabled = index === 0;
+    prev.addEventListener('click', () => setActive(activeIndex - 1));
+
+    const next = document.createElement('button');
+    next.className = 'nav-btn';
+    next.textContent = '→';
+    next.disabled = index === images.length - 1;
+    next.addEventListener('click', () => setActive(activeIndex + 1));
+
+    wrapper.appendChild(prev);
+    wrapper.appendChild(next);
+    return wrapper;
+}
+
+function updateNavButtons() {
+    if (activeIndex === -1) return;
+    const [prev, next] = preview.querySelectorAll('.nav-btn');
+    if (prev) prev.disabled = activeIndex === 0;
+    if (next) next.disabled = activeIndex === images.length - 1;
+}
+
+function clearPreview() {
+    activeIndex = -1;
+    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+    preview.innerHTML = '<div class="placeholder">Выберите изображение</div>';
+}
