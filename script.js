@@ -29,4 +29,13 @@ const nameInput = document.getElementById('image-name');
 const fileInput = document.getElementById('image-file');
 const addBtn = document.getElementById('add-btn');
 
+init();
 
+function init() {
+    setupIntersectionObserver();
+    resetGallery();
+    setupResize();
+    setupForm();
+    setupKeyboard();
+    setupDragEvents();
+}
