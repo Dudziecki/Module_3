@@ -182,3 +182,17 @@ function clearPreview() {
     document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
     preview.innerHTML = '<div class="placeholder">Выберите изображение</div>';
 }
+
+gallery.addEventListener('scroll', () => {
+    toggleScrollTop();
+});
+
+function toggleScrollTop() {
+    const reachedEnd = loadedCount >= images.length;
+    const scrolled = gallery.scrollTop > 80;
+    scrollTopBtn.classList.toggle('visible', reachedEnd && scrolled);
+}
+
+scrollTopBtn.addEventListener('click', () => {
+    gallery.scrollTo({top: 0, behavior: 'smooth'});
+});
