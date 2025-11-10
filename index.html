@@ -7,7 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="form-container">
+    <input type="text" id="image-name" placeholder="Название изображения" required>
+    <input type="file" id="image-file" accept="image/*" required>
+    <button id="add-btn">Добавить в галерею</button>
+</div>
 
+<div class="main-container">
+    <div class="gallery" id="gallery">
+        <div class="card-grid" id="card-grid"></div>
+    </div>
+    <div class="resize-bar" id="resize-bar"></div>
+    <div class="preview" id="preview">
+        <div class="placeholder">Выберите изображение</div>
+    </div>
+</div>
+
+<button class="scroll-top" id="scroll-top">Up</button>
+<div class="drag-coords" id="drag-coords"></div>
 
 <script src="script.js"></script>
 </body>
