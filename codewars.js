@@ -1,3 +1,4 @@
+// Jokes you've been 'awaiting' for ... promise
 async function sayJoke(apiUrl, jokeId) {
     try {
         const response = await fetch(apiUrl);
@@ -26,6 +27,7 @@ async function sayJoke(apiUrl, jokeId) {
     }
 }
 
+// Promises Made and Broken: The Misadventures of Bob the Highly Paid Consultant
 async function submitOrder(user) {
     try {
         const [shoppingCart, profile] = await Promise.all([
@@ -44,6 +46,7 @@ async function submitOrder(user) {
     }
 }
 
+// Nuclear Missile Manager
 function launchAll(launchMissile) {
     for (let i = 0; i < 5; i++) {
         setTimeout(function () {
@@ -52,10 +55,12 @@ function launchAll(launchMissile) {
     }
 }
 
+// A Promise is a Promise
 function promiseHelloWorld() {
     return Promise.resolve('Hello World!');
 }
 
+// This isn't what you think! The Misadventures of Bob the Highly Paid Consultant #2
 ShoppingCart.prototype.addButtonClicked = function (item) {
     this.checkQuantityAsync(item, this.addButtonClicked1.bind(this));
 };
@@ -78,7 +83,7 @@ ShoppingCart.prototype.addButtonClicked3 = function (success) {
     this.showMessage(`${success ? "Successfully" : "Unsuccessfully"} added item to cart`);
 };
 
-
+// Well, that's just (proto)typical! The Misadventures of Bob the Highly Paid Consultant #3
 function Cart(user) {
     this.user = user;
     this.cart = [];
@@ -106,6 +111,7 @@ Cart.prototype = {
     }
 };
 
+// Training JS #37: Unlock new weapon---RegExp Object
 function countAnimals(animals, count) {
     const animalsArray = animals.split(',');
 
@@ -114,6 +120,7 @@ function countAnimals(animals, count) {
     });
 }
 
+// Training JS #38: Regular Expression--"^","$", "." and test()
 function findSimilarity(str, word) {
     const words = str.split(' ');
 
@@ -126,11 +133,15 @@ function findSimilarity(str, word) {
     return similarWords.join(' ');
 }
 
+// Training JS #39: Regular Expression--"?", "*", "+" and "{}"
 const regex = /^-?9.*0{4,}$/;
 
-var regex = /https?:\/\/[a-z0-9.]+\.(?:com|net)/gi;
+// Training JS #40: Regular Expression--"|", "[]" and "()"
+let regex = /https?:\/\/[a-z0-9.]+\.(?:com|net)/gi;
+// !!!!
 
-var regex = /(\d)(?=(\d{3})+$)/g;
+// Training JS #42: Regular Expression--( ?: ), ( ?= ) and ( ?! )
+let regex = /(\d)(?=(\d{3})+$)/g;
 
 function addCommas(money, reg) {
     const parts = money.split('$');
@@ -138,6 +149,15 @@ function addCommas(money, reg) {
     return '$' + formattedNumber;
 }
 
+// Color Ghost
+class Ghost {
+    constructor() {
+        const colors = ['white', 'yellow', 'purple', 'red'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+}
+
+// Find all javascript files
 function findAllJavascriptFiles(root, callback) {
     const results = [];
 
@@ -180,6 +200,7 @@ function findAllJavascriptFiles(root, callback) {
     });
 }
 
+// Refactored Greeting
 class Person {
     constructor(name) {
         this.name = name;
@@ -190,6 +211,7 @@ class Person {
     }
 }
 
+// Building blocks
 class Block {
     constructor(data) {
         [this.width, this.length, this.height] = data;
@@ -218,6 +240,7 @@ class Block {
     }
 }
 
+// Basic subclasses - Adam and Eve
 class Human {
     constructor() {
     }
@@ -241,6 +264,7 @@ class God {
     }
 }
 
+// FIXME: Get Full Name
 class Dinglemouse {
 
     constructor(firstName, lastName) {
@@ -254,6 +278,7 @@ class Dinglemouse {
 
 }
 
+// Who's Online?
 function whosOnline(friends) {
     const result = {};
 
@@ -277,6 +302,7 @@ function whosOnline(friends) {
     return result;
 }
 
+// Split The Bill
 function splitTheBill(group) {
     const amounts = Object.values(group);
     const total = amounts.reduce((sum, amount) => sum + amount, 0);
@@ -290,6 +316,7 @@ function splitTheBill(group) {
     return result;
 }
 
+// The Enigma Machine - Part 1: The Plugboard
 function Plugboard(wires) {
     if (wires) {
         if (wires.length % 2 !== 0) {
@@ -327,12 +354,14 @@ function Plugboard(wires) {
     };
 }
 
+// "this" is a problem
 function NameMe(first, last) {
     this.firstName = first;
     this.lastName = last;
     this.name = this.firstName + ' ' + this.lastName;
 }
 
+// Ninja vs Samurai: Strike
 let Warrior = function (name) {
     this.name = name;
     this.health = 100;
@@ -342,6 +371,7 @@ Warrior.prototype.strike = function (enemy, swings) {
     enemy.health = Math.max(0, enemy.health - (swings * 10));
 }
 
+// JavaScript class-like objects
 class Animal {
     constructor(name, type) {
         this.name = name;
@@ -353,12 +383,14 @@ class Animal {
     }
 }
 
+// SantaClausable Interface
 function isSantaClausable(obj) {
     return typeof obj.sayHoHoHo === 'function' &&
         typeof obj.distributeGifts === 'function' &&
         typeof obj.goDownTheChimney === 'function';
 }
 
+// Fun with ES6 Classes #1 - People, people, people
 class Person {
     constructor(firstName = 'John', lastName = 'Doe', age = 0, gender = 'Male') {
         this.firstName = firstName;
@@ -376,6 +408,7 @@ class Person {
     }
 }
 
+// Fun with ES6 Classes #2 - Animals and Inheritance
 class Shark extends Animal {
     constructor(name, age, status) {
         super(name, age, 0, "shark", status);
@@ -403,6 +436,7 @@ class Dog extends Animal {
     }
 }
 
+// Fun with ES6 Classes #3 - Cuboids, Cubes and Getters
 class Cuboid {
     constructor(length, width, height) {
         this.length = length;
@@ -427,6 +461,7 @@ class Cube extends Cuboid {
     }
 }
 
+// Fun with ES6 Classes #4 - Cubes and Setters
 class Cube {
     constructor(length) {
         this.length = length;
@@ -449,12 +484,14 @@ class Cube {
     }
 }
 
+// SpeedCode #3 × Fun with ES6 Classes #5 - Dogs and Classes
 class Labrador extends Dog {
     constructor(name, age, gender, master) {
         super(name, age, gender, "Labrador", "Large", master, true)
     }
 }
 
+// Fun with ES6 Classes #6 - Fake Files (Basic)
 class File {
     constructor(fullName, contents) {
         this._fullName = fullName;
@@ -508,6 +545,7 @@ class File {
     }
 }
 
+// PaginationHelper
 class PaginationHelper {
     constructor(collection, itemsPerPage) {
         this.collection = collection;
@@ -544,6 +582,7 @@ class PaginationHelper {
     }
 }
 
+// Array#reduce
 Array.prototype.reduce = function (process, initial) {
     let acc = initial !== undefined ? initial : this[0];
     let i = initial !== undefined ? 0 : 1;
@@ -555,6 +594,7 @@ Array.prototype.reduce = function (process, initial) {
     return acc;
 };
 
+// Calculating with objects
 Num.prototype[Symbol.toPrimitive] = function (hint) {
     if (hint === 'number' || hint === 'default') {
         return this.num;
@@ -562,6 +602,7 @@ Num.prototype[Symbol.toPrimitive] = function (hint) {
     return this.toString();
 };
 
+// A Chain adding function
 function add(n) {
     const f = function (x) {
         return add(n + x);
@@ -578,6 +619,7 @@ function add(n) {
     return f;
 }
 
+// Wrapped Function
 Object.defineProperty(
     Function.prototype,
     'wrap',
@@ -591,7 +633,7 @@ Object.defineProperty(
     }
 );
 
-// Добавляем метод pipe к Function.prototype
+// Concatenating functions
 Function.prototype.pipe = function (...funcs) {
     const firstFunc = this;
     return function (input) {
@@ -599,6 +641,7 @@ Function.prototype.pipe = function (...funcs) {
     };
 };
 
+// Function Cache
 function cache(fn) {
     const cache = new Map();
 
@@ -618,12 +661,13 @@ function cache(fn) {
     };
 }
 
+// Pipelining and composing functions
 function pipeline(seed, ...funcs) {
     return funcs.reduce((result, fn) => fn(result), seed);
 }
 
 function compose(...funcs) {
-    return function(input) {
+    return function (input) {
         let result = input;
         for (let i = funcs.length - 1; i >= 0; i--) {
             result = funcs[i](result);
@@ -632,17 +676,12 @@ function compose(...funcs) {
     };
 }
 
-// Implement the functionality of the 'new' operator as if you had the code:
-// var myObj = new MyObject();
-// but do not use the 'new' operator.
-//
-// Start with a simple empty Object literal.
+// How new Works
 var myObj = {};
 myObj = Object.create(MyObject.prototype);
-
-
 MyObject.call(myObj);
 
+// Cylon Evolution
 function Cylon(model) {
     this.model = model;
 }
@@ -657,19 +696,22 @@ HumanSkin.prototype = Object.create(Cylon.prototype);
 HumanSkin.prototype.constructor = HumanSkin;
 HumanSkin.prototype.infiltrate = () => "Infiltrate the colonies";
 
-Function.prototype.call = function(thisArg, ...args) {
+// Write JavaScript's 'call' function using apply.
+Function.prototype.call = function (thisArg, ...args) {
     return this.apply(thisArg, args);
 };
 
+// Anonymous Returns.
 let alpha = {
     name: 'My Alpha',
-    getNameFunc: function() {
+    getNameFunc: function () {
         return () => {
             return this.name;
         };
     }
 };
 
+// Basics - Generators #1
 function* generator(initial = 1) {
     let count = initial;
 
@@ -683,6 +725,7 @@ function* generator(initial = 1) {
     }
 }
 
+// Multiplication - Generators #2
 function* generator(a) {
     let b = 1;
 
@@ -692,9 +735,10 @@ function* generator(a) {
     }
 }
 
+// Generating Generators - Generators #3
 function* generator(start, end) {
     for (let a = start; a <= end; a++) {
-        yield function*() {
+        yield function* () {
             for (let b = 1; b <= 10; b++) {
                 yield `${a} x ${b} = ${a * b}`;
             }
@@ -702,6 +746,7 @@ function* generator(start, end) {
     }
 }
 
+// Fibonacci Generator Function
 function* fibonacci() {
     let a = 0;
     let b = 1;
@@ -712,10 +757,14 @@ function* fibonacci() {
     }
 }
 
+// Mr. Freeze
 Object.freeze(MrFreeze);
 
+// Defining getters and setters on an existing class
 Object.defineProperty(Person.prototype, 'name', {
-    get() { return this.firstName + ' ' + this.lastName; },
+    get() {
+        return this.firstName + ' ' + this.lastName;
+    },
     set(fullName) {
         [this.firstName, this.lastName] = fullName.split(' ');
     }
