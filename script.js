@@ -232,3 +232,35 @@ function setupResize() {
         }
     });
 }
+
+function setupForm() {
+    addBtn.addEventListener('click', addImage);
+    fileInput.addEventListener('change', autoFillName);
+}
+
+function autoFillName() {
+    const f = fileInput.files && fileInput.files[0];
+    if (!f) return;
+    const name = f.name.split('.').slice(0, -1).join('.') || f.name;
+    nameInput.value = name;
+}
+
+function addImage() {
+    const file = fileInput.files && fileInput.files[0];
+    const name = nameInput.value.trim();
+    if (!file || !name) {
+        alert('Введите имя и выберите файл');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        images.unshift({name, src: e.target.result});
+        resetGallery();
+        setTimeout(() => setActive(0), 50);
+        nameInput.value = '';
+        fileInput.value = '';
+    };
+    reader.onerror = () => alert('Ошибка чтения файла');
+    reader.readAsDataURL(file);
+}
