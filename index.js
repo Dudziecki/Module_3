@@ -1,4 +1,4 @@
-//Sum of Multiples
+// Sum of Multiples
 function sumMul(n, m) {
     if (n <= 0 || m <= 0) return "INVALID"
     const k = Math.floor((m - 1) / n)
@@ -6,13 +6,13 @@ function sumMul(n, m) {
     return n * (k * (k + 1)) / 2
 }
 
-//Even or Odd
+// Even or Odd
 function evenOrOdd(number) {
     if (!Number.isInteger(number)) return
     return number % 2 === 0 ? "Even" : "Odd"
 }
 
-//Odds-Index
+// Odds-Index
 function oddBall(arr) {
     let oddWordIndex = -1
     for (let i = 0; i <= arr.length; i++) {
