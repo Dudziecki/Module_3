@@ -196,3 +196,39 @@ function toggleScrollTop() {
 scrollTopBtn.addEventListener('click', () => {
     gallery.scrollTo({top: 0, behavior: 'smooth'});
 });
+
+let isResizing = false;
+
+function setupResize() {
+    resizeBar.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        resizeBar.classList.add('active');
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        const container = document.querySelector('.main-container');
+        const rect = container.getBoundingClientRect();
+        const total = rect.width;
+        let leftWidth = e.clientX - rect.left;
+        const minLeft = total * 0.3; // 30%
+        const minRight = total * 0.2; // 20%
+
+        if (leftWidth < minLeft) leftWidth = minLeft;
+        if (total - leftWidth < minRight) leftWidth = total - minRight;
+
+        const leftPercent = (leftWidth / total) * 100;
+        const rightPercent = 100 - leftPercent;
+
+        document.querySelector('.gallery').style.flexBasis = leftPercent + '%';
+        document.querySelector('.preview').style.flexBasis = rightPercent + '%';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isResizing) {
+            isResizing = false;
+            resizeBar.classList.remove('active');
+        }
+    });
+}
