@@ -264,3 +264,15 @@ function addImage() {
     reader.onerror = () => alert('Ошибка чтения файла');
     reader.readAsDataURL(file);
 }
+
+function setupKeyboard() {
+    document.addEventListener('keydown', (e) => {
+        if (activeIndex === -1) return;
+        if (e.key === 'ArrowLeft') {
+            setActive(Math.max(0, activeIndex - 1));
+        }
+        if (e.key === 'ArrowRight') {
+            setActive(Math.min(images.length - 1, activeIndex + 1));
+        }
+    });
+}
