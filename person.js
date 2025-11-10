@@ -1,4 +1,5 @@
 const Person = {}
+
 Object.defineProperties(Person, {
     name: {
         value: "Mike",
