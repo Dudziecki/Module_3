@@ -1,3 +1,4 @@
+//Sum of Multiples
 function sumMul(n, m) {
     if (n <= 0 || m <= 0) return "INVALID"
     const k = Math.floor((m - 1) / n)
@@ -5,13 +6,13 @@ function sumMul(n, m) {
     return n * (k * (k + 1)) / 2
 }
 
-function sumMul(n, m) {
-    if (n <= 0 || m <= 0) return "INVALID"
-    const k = Math.floor((m - 1) / n)
-    if (k <= 0) return 0;
-    return n * (k * (k + 1)) / 2
+//Even or Odd
+function evenOrOdd(number) {
+    if (!Number.isInteger(number)) return
+    return number % 2 === 0 ? "Even" : "Odd"
 }
 
+//Odds-Index
 function oddBall(arr) {
     let oddWordIndex = -1
     for (let i = 0; i <= arr.length; i++) {
@@ -28,10 +29,12 @@ function oddBall(arr) {
     return false
 }
 
+// Convert a Boolean to a String
 function booleanToString(b) {
     return b.toString()
 }
 
+// Basic Mathematical Operations
 function basicOp(operation, value1, value2) {
     switch (operation) {
         case "+":
@@ -47,12 +50,14 @@ function basicOp(operation, value1, value2) {
     }
 }
 
+// Training JS #7: if..else and ternary operator
 function saleHotdogs(n) {
     if (n < 5) return n * 100;
     else if (n < 10) return n * 95;
     else return n * 90;
 }
 
+// Count the divisors of a number!
 function getDivisorsCnt(n) {
     let count = 0
     if (!Number.isInteger(n) || n < 0) return
@@ -65,10 +70,12 @@ function getDivisorsCnt(n) {
     return count
 }
 
+// Century From Year
 function century(year) {
     return Math.ceil(year / 100);
 }
 
+// Simple multiplication
 function simpleMultiplication(number) {
     if (number % 2 === 0) {
         return number * 8
@@ -77,11 +84,13 @@ function simpleMultiplication(number) {
     }
 }
 
+// Convert boolean values to strings 'Yes' or 'No'.
 function boolToWord(bool) {
     if (typeof bool !== "boolean") return
     return bool === true ? "Yes" : "No"
 }
 
+// Persistent Bugger.
 function persistence(num) {
     let count = 0;
     while (num >= 10) {
@@ -92,10 +101,12 @@ function persistence(num) {
     return count;
 }
 
+// Grasshopper - Summation
 let summation = function (num) {
     return num * (num + 1) / 2;
 }
 
+// If you can't sleep, just count sheep!!
 let countSheep = function (num) {
     let result = '';
     for (let i = 1; i <= num; i++) {
@@ -104,10 +115,12 @@ let countSheep = function (num) {
     return result;
 }
 
+// Training JS #6: Basic data types--Boolean and conditional statements if..else
 function trueOrFalse(val) {
     return val ? "true" : "false";
 }
 
+// Training JS #8: Conditional statement--switch
 function howManydays(month) {
     switch (month) {
         case 1:
@@ -128,6 +141,7 @@ function howManydays(month) {
     }
 }
 
+// Training JS #9: loop statement --while and do..while
 function padIt(str, n) {
     let i = 1;
     while (i <= n) {
@@ -141,6 +155,7 @@ function padIt(str, n) {
     return str;
 }
 
+// Training JS #10: loop statement --for
 function pickIt(arr) {
     let odd = [], even = [];
     for (let i = 0; i < arr.length; i++) {
@@ -153,6 +168,7 @@ function pickIt(arr) {
     return [odd, even];
 }
 
+// Training JS #11: loop statement --break,continue
 function grabDoll(dolls) {
     let bag = [];
 
@@ -169,6 +185,7 @@ function grabDoll(dolls) {
     return bag;
 }
 
+// Training JS #2: Basic data types--Number
 let v1 = 50,
     v2 = 100,
     v3 = 150,
@@ -206,6 +223,7 @@ function equal5() {
     return a % b;
 }
 
+// Training JS #14: Methods of Number object--toString() and toLocaleString()
 function colorOf(r, g, b) {
     let red = r.toString(16);
     let green = g.toString(16);
@@ -218,6 +236,7 @@ function colorOf(r, g, b) {
     return '#' + red + green + blue;
 }
 
+// Training JS #15: Methods of Number object--toFixed(), toExponential() and toPrecision()
 function howManySmaller(arr, n) {
     let count = 0;
 
@@ -231,19 +250,7 @@ function howManySmaller(arr, n) {
     return count;
 }
 
-function howManySmaller(arr, n) {
-    let count = 0;
-
-    for (let i = 0; i < arr.length; i++) {
-        let fixedNum = parseFloat(arr[i].toFixed(2));
-        if (fixedNum < n) {
-            count++;
-        }
-    }
-
-    return count;
-}
-
+// Training JS #32: methods of Math---round() ceil() and floor()
 function roundIt(n) {
     const parts = n.toString().split('.');
     const leftDigits = parts[0].length;
@@ -258,6 +265,7 @@ function roundIt(n) {
     }
 }
 
+// Training JS #33: methods of Math---max() min() and abs()
 function maxMin(arr1, arr2) {
     const differences = [];
 
@@ -271,6 +279,7 @@ function maxMin(arr1, arr2) {
     return [maxValue, minValue];
 }
 
+// Training JS #34: methods of Math---pow() sqrt() and cbrt()
 function cutCube(volume, n) {
     if (volume % n !== 0) return false;
 
@@ -282,6 +291,7 @@ function cutCube(volume, n) {
     return Number.isInteger(bigSide) && Number.isInteger(smallSide);
 }
 
+// Training JS #36: methods of Math---kata author's lover:random()
 function rndCode() {
     const letters = "ABCDEFGHIJKLM";
     const numbers = "0123456789";
@@ -304,6 +314,8 @@ function rndCode() {
     return code;
 }
 
+
+// Training JS #16: Methods of String object--slice(), substring() and substr()
 function cutIt(arr) {
     let minLength = Infinity;
     for (let str of arr) {
@@ -320,6 +332,7 @@ function cutIt(arr) {
     return result;
 }
 
+// Training JS #17: Methods of String object--indexOf(), lastIndexOf() and search()
 function firstToLast(str, c) {
     const firstIndex = str.indexOf(c);
     const lastIndex = str.lastIndexOf(c);
@@ -331,6 +344,7 @@ function firstToLast(str, c) {
     return lastIndex - firstIndex;
 }
 
+// Training JS #18: Methods of String object--concat() split() and its good friend join()
 function splitAndMerge(string, separator) {
     const words = string.split(' ');
     const processedWords = words.map(word =>
@@ -340,6 +354,7 @@ function splitAndMerge(string, separator) {
     return processedWords.join(' ');
 }
 
+// Training JS #19: Methods of String object--toUpperCase() toLowerCase() and replace()
 function alienLanguage(str) {
     const words = str.split(' ');
     const alienWords = words.map(word => {
@@ -352,6 +367,7 @@ function alienLanguage(str) {
     return alienWords.join(' ');
 }
 
+// Training JS #20: Methods of String object--charAt() charCodeAt() and fromCharCode()
 function topSecret(str) {
     let result = '';
 
@@ -373,6 +389,7 @@ function topSecret(str) {
     return result;
 }
 
+// Training JS #21: Methods of String object--trim() and the string template
 function fiveLine(s) {
     const cleanS = s.trim();
     let result = [];
@@ -383,7 +400,18 @@ function fiveLine(s) {
     return result.join('\n');
 }
 
-var a1 = "A", a2 = "a", b1 = "B", b2 = "b", c1 = "C", c2 = "c", d1 = "D", d2 = "d", e1 = "E", e2 = "e", n1 = "N",
+// Training JS #3: Basic data types--String
+let a1 = "A",
+    a2 = "a",
+    b1 = "B",
+    b2 = "b",
+    c1 = "C",
+    c2 = "c",
+    d1 = "D",
+    d2 = "d",
+    e1 = "E",
+    e2 = "e",
+    n1 = "N",
     n2 = "n"
 
 function Dad() {
@@ -410,10 +438,12 @@ function answer3() {
     return 'yes';
 }
 
+// Training JS #5: Basic data types--Object
 function animal(obj) {
     return `This ${obj.color} ${obj.name} has ${obj.legs} legs.`;
 }
 
+// Training Time
 function shuffleIt(arr, ...swapArrays) {
     const result = [...arr];
     for (const indices of swapArrays) {
@@ -425,6 +455,7 @@ function shuffleIt(arr, ...swapArrays) {
     return result;
 }
 
+// Training JS #23: methods of arrayObject---push(), pop(), shift() and unshift()
 function infiniteLoop(arr, d, n) {
     const lengths = arr.map(subArr => subArr.length);
     let flat = [].concat(...arr);
@@ -448,6 +479,7 @@ function infiniteLoop(arr, d, n) {
     return result;
 }
 
+// Training JS #24: methods of arrayObject---splice() and slice()
 function threeInOne(arr) {
     const result = [];
     for (let i = 0; i < arr.length; i += 3) {
@@ -458,6 +490,7 @@ function threeInOne(arr) {
     return result;
 }
 
+// Training JS #25: methods of arrayObject---reverse() and sort()
 function sortIt(arr) {
     const count = {};
     for (const num of arr) {
@@ -472,6 +505,7 @@ function sortIt(arr) {
     });
 }
 
+// Training JS #26: methods of arrayObject---map()
 function isolateIt(arr) {
     return arr.map(str => {
         const mid = Math.floor(str.length / 2);
@@ -484,6 +518,7 @@ function isolateIt(arr) {
     });
 }
 
+// Training JS #27: methods of arrayObject---filter()
 function countGrade(scores) {
     return scores.reduce((acc, score) => {
         switch (true) {
@@ -510,6 +545,7 @@ function countGrade(scores) {
     }, {S: 0, A: 0, B: 0, C: 0, D: 0, X: 0});
 }
 
+// Training JS #28: methods of arrayObject---every() and some()
 function mirrorImage(arr) {
     for (let i = 0; i < arr.length - 1; i++) {
         const a = arr[i];
@@ -526,6 +562,7 @@ function mirrorImage(arr) {
     return [-1, -1];
 }
 
+// Training JS #29: methods of arrayObject---concat() and join()
 function bigToSmall(arr) {
     const flatArray = [].concat(...arr);
     const sorted = flatArray.sort((a, b) => b - a);
@@ -533,6 +570,7 @@ function bigToSmall(arr) {
     return sorted.join('>');
 }
 
+// Training JS #30: methods of arrayObject---reduce() and reduceRight()
 function tailAndHead(arr) {
     const sums = [];
 
@@ -545,6 +583,7 @@ function tailAndHead(arr) {
     return sums.reduce((product, num) => product * num, 1);
 }
 
+// Training JS #31: methods of arrayObject---isArray() indexOf() and toString()
 function blackAndWhite(arr) {
     if (!Array.isArray(arr)) {
         return "It's a fake array";
@@ -556,6 +595,7 @@ function blackAndWhite(arr) {
     return "It's a white array";
 }
 
+// Strings, strings, strings (Easy)
 Boolean.prototype.toString = function () {
     return this.valueOf() ? 'true' : 'false';
 };
@@ -568,6 +608,7 @@ Array.prototype.toString = function () {
     return `[${this.map(item => String(item)).join(',')}]`;
 };
 
+// Count strings in objects
 function strCount(obj) {
     let count = 0;
 
@@ -585,6 +626,7 @@ function strCount(obj) {
     return count;
 }
 
+// Coding Meetup #1 - Higher-Order Functions Series - Count the number of JavaScript developers coming from Europe
 function countDevelopers(list) {
     return list.filter(dev =>
         dev.language === 'JavaScript' &&
@@ -592,11 +634,13 @@ function countDevelopers(list) {
     ).length;
 }
 
+// Coding Meetup #7 - Higher-Order Functions Series - Find the most senior developer
 function findSenior(list) {
     const maxAge = Math.max(...list.map(dev => dev.age));
     return list.filter(dev => dev.age === maxAge);
 }
 
+// Coding Meetup #16 - Higher-Order Functions Series - Ask for missing details
 function askForMissingDetails(list) {
     return list.filter(dev => {
         const missingProperty = Object.keys(dev).find(key => dev[key] === null);
@@ -608,6 +652,7 @@ function askForMissingDetails(list) {
     });
 }
 
+// Coding Meetup #9 - Higher-Order Functions Series - Is the meetup age-diverse?
 function isAgeDiverse(list) {
     const ageGroups = new Set();
 
@@ -629,6 +674,7 @@ function isAgeDiverse(list) {
     return allGroups.every(group => ageGroups.has(group));
 }
 
+// Coding Meetup #5 - Higher-Order Functions Series - Prepare the count of languages
 function countLanguages(list) {
     return list.reduce((count, dev) => {
         const language = dev.language;
@@ -637,11 +683,13 @@ function countLanguages(list) {
     }, {});
 }
 
+// Coding Meetup #6 - Higher-Order Functions Series - Can they code in the same language?
 function isSameLanguage(list) {
     const languages = new Set(list.map(dev => dev.language));
     return languages.size === 1;
 }
 
+// Coding Meetup #12 - Higher-Order Functions Series - Find GitHub admins
 function findAdmin(list, lang) {
     return list.filter(dev =>
         dev.language === lang &&
@@ -649,6 +697,7 @@ function findAdmin(list, lang) {
     );
 }
 
+// Invalid Input - Error Handling #1
 function getCount(words) {
     if (typeof words !== 'string') {
         return {vowels: 0, consonants: 0};
@@ -671,6 +720,7 @@ function getCount(words) {
     return {vowels, consonants};
 }
 
+// Error Throwing - Error Handling #2
 function validateMessage(msg) {
     if (msg === null) {
         throw new ReferenceError('Message is null!');
@@ -691,6 +741,7 @@ function validateMessage(msg) {
     return true;
 }
 
+// Throw from list - Error Handling #3
 function validate(username, password) {
     const trimmedUsername = username.trim();
     const trimmedPassword = password.trim();
