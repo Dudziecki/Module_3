@@ -76,3 +76,43 @@ function setupIntersectionObserver() {
         });
     }, {root: gallery, threshold: 0.5});
 }
+
+function createCard(index) {
+    const imgData = images[index];
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.index = String(index);
+    card.draggable = true;
+
+    const img = document.createElement('img');
+    img.src = imgData.src;
+    img.alt = imgData.name;
+    img.loading = 'lazy';
+
+    const name = document.createElement('div');
+    name.className = 'card-name';
+    name.textContent = imgData.name;
+
+    card.appendChild(img);
+    card.appendChild(name);
+
+    card.addEventListener('click', () => setActive(index));
+
+    card.addEventListener('dragstart', (e) => {
+        draggedCard = card;
+        droppedIntoPreview = false;
+        card.classList.add('dragging');
+        e.dataTransfer.setData('text/plain', String(index));
+        e.dataTransfer.effectAllowed = 'move';
+        dragCoords.classList.add('visible');
+    });
+
+    card.addEventListener('dragend', (e) => {
+        card.classList.remove('dragging');
+        draggedCard = null;
+        dragCoords.classList.remove('visible');
+        dragCoords.textContent = '';
+    });
+
+    return card;
+}
