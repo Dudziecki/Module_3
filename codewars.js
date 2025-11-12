@@ -696,6 +696,16 @@ HumanSkin.prototype = Object.create(Cylon.prototype);
 HumanSkin.prototype.constructor = HumanSkin;
 HumanSkin.prototype.infiltrate = () => "Infiltrate the colonies";
 
+// Replicate `new`
+function nouveau(Constructor, ...args) {
+    const instance = Object.create(Constructor.prototype);
+    const result = Constructor.apply(instance, args);
+
+    return (result !== null && (typeof result === 'object' || typeof result === 'function'))
+        ? result
+        : instance;
+}
+
 // Write JavaScript's 'call' function using apply.
 Function.prototype.call = function (thisArg, ...args) {
     return this.apply(thisArg, args);
@@ -709,6 +719,23 @@ let alpha = {
             return this.name;
         };
     }
+};
+
+// Power .bind()
+Function.prototype.bind = function(context) {
+    const originalFn = this;
+
+    function bound(...args) {
+        return originalFn.apply(bound._context, args);
+    }
+
+    bound._context = context;
+    bound.bind = function(newContext) {
+        bound._context = newContext;
+        return bound;
+    };
+
+    return bound;
 };
 
 // Basics - Generators #1
@@ -759,6 +786,23 @@ function* fibonacci() {
 
 // Mr. Freeze
 Object.freeze(MrFreeze);
+
+// Deep Freeze
+Object.deepFreeze = function (object) {
+    if (object === null || typeof object !== 'object') return object;
+
+    Object.getOwnPropertyNames(object).forEach(name => {
+        const value = object[name];
+        if (
+            value &&
+            typeof value === 'object'
+        ) {
+            Object.deepFreeze(value);
+        }
+    });
+
+    return Object.freeze(object);
+};
 
 // Defining getters and setters on an existing class
 Object.defineProperty(Person.prototype, 'name', {
