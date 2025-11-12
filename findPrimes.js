@@ -36,7 +36,9 @@ function findPrimes(start, end) {
                 window.lastProgress = progress10;
             }
         }
+
         current = chunkEnd + 1;
+
         if (current <= end) {
             setTimeout(processChunk, 0);
         } else {
