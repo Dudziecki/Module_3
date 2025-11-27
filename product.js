@@ -1,4 +1,4 @@
-const ProductsDiscount = new WeakMap();
+const ProductsDiscount = new Map();
 
 class Product {
     constructor(name, price) {
@@ -15,6 +15,10 @@ class Product {
         return ProductsDiscount.get(this);
 
     }
+
+    delete() {
+        ProductsDiscount.delete(this);
+    }
 }
 
 let apple = new Product("Apple", 100);
@@ -26,6 +30,7 @@ banana.setDiscount(10);
 console.log("Apple discount:", apple.getDiscount());
 console.log("Banana discount:", banana.getDiscount());
 
+apple.delete();
 apple = null;
 
 console.log("Есть ли banana?", ProductsDiscount.has(apple));
