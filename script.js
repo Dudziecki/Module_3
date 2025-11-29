@@ -28,9 +28,8 @@ const resizeBar = document.getElementById('resize-bar');
 const scrollTopBtn = document.getElementById('scroll-top');
 const dragCoords = document.getElementById('drag-coords');
 
-const nameInput = document.getElementById('image-name');
+const nameInput = document.getElementById('search');
 const fileInput = document.getElementById('image-file');
-const addBtn = document.getElementById('add-btn');
 
 init();
 
@@ -237,7 +236,14 @@ function setupResize() {
 }
 
 function setupForm() {
-    addBtn.addEventListener('click', addImage);
+    const form = document.getElementById('add-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        addImage();
+    });
+
     fileInput.addEventListener('change', autoFillName);
 }
 
