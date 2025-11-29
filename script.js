@@ -17,7 +17,10 @@ let activeIndex = -1;
 let observer = null;
 let draggedCard = null;
 let droppedIntoPreview = false;
+let activeCard = null;
+let filteredIndices = null;
 
+const mainContainer = document.getElementById('main-container');
 const gallery = document.getElementById('gallery');
 const cardGrid = document.getElementById('card-grid');
 const preview = document.getElementById('preview');
@@ -38,6 +41,7 @@ function init() {
     setupForm();
     setupKeyboard();
     setupDragEvents();
+    setupSearch();
 }
 
 function resetGallery() {
@@ -50,15 +54,16 @@ function resetGallery() {
 }
 
 function loadBatch() {
+    const renderIndices = filteredIndices ? filteredIndices : images.map((_, i) => i);
     const fragment = document.createDocumentFragment();
-    const end = Math.min(loadedCount + batchSize, images.length);
+    const end = Math.min(loadedCount + batchSize, renderIndices.length);
     for (let i = loadedCount; i < end; i++) {
-        fragment.appendChild(createCard(i));
+        fragment.appendChild(createCard(renderIndices[i]));
     }
     cardGrid.appendChild(fragment);
     loadedCount = end;
 
-    if (loadedCount < images.length) {
+    if (loadedCount < renderIndices.length) {
         const last = cardGrid.lastElementChild;
         if (last) observer.observe(last);
     } else {
@@ -119,10 +124,9 @@ function createCard(index) {
 
 function setActive(index) {
     if (index < 0 || index >= images.length) return;
-    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
-    activeIndex = index;
-    const card = cardGrid.querySelector(`.card[data-index="${index}"]`);
-    if (card) card.classList.add('active');
+    if (activeCard) activeCard.classList.remove('active');
+    activeCard = cardGrid.querySelector(`.card[data-index="${index}"]`);
+    if (activeCard) activeCard.classList.add('active');
     renderPreview(images[index], index);
     updateNavButtons();
 }
@@ -208,12 +212,11 @@ function setupResize() {
 
     document.addEventListener('mousemove', (e) => {
         if (!isResizing) return;
-        const container = document.querySelector('.main-container');
-        const rect = container.getBoundingClientRect();
+        const rect = mainContainer.getBoundingClientRect();
         const total = rect.width;
         let leftWidth = e.clientX - rect.left;
-        const minLeft = total * 0.3; // 30%
-        const minRight = total * 0.2; // 20%
+        const minLeft = total * 0.3;
+        const minRight = total * 0.2;
 
         if (leftWidth < minLeft) leftWidth = minLeft;
         if (total - leftWidth < minRight) leftWidth = total - minRight;
@@ -221,8 +224,8 @@ function setupResize() {
         const leftPercent = (leftWidth / total) * 100;
         const rightPercent = 100 - leftPercent;
 
-        document.querySelector('.gallery').style.flexBasis = leftPercent + '%';
-        document.querySelector('.preview').style.flexBasis = rightPercent + '%';
+        gallery.style.flexBasis = leftPercent + '%';
+        preview.style.flexBasis = rightPercent + '%';
     });
 
     document.addEventListener('mouseup', () => {
@@ -256,11 +259,13 @@ function addImage() {
     const reader = new FileReader();
     reader.onload = (e) => {
         images.unshift({name, src: e.target.result});
+        filteredIndices = null;
         resetGallery();
-        setTimeout(() => setActive(0), 50);
+        requestAnimationFrame(() => setActive(0));
         nameInput.value = '';
         fileInput.value = '';
     };
+
     reader.onerror = () => alert('Ошибка чтения файла');
     reader.readAsDataURL(file);
 }
@@ -296,4 +301,32 @@ function setupDragEvents() {
             setActive(index);
         }
     });
+}
+
+function debounce(fn, wait = 200) {
+    let t;
+    return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), wait);
+    };
+}
+
+function setupSearch() {
+    const searchInput = document.getElementById('search');
+    if (!searchInput) return;
+
+    const onInput = debounce(() => {
+        const q = searchInput.value.trim().toLowerCase();
+        if (!q) {
+            filteredIndices = null;
+        } else {
+            filteredIndices = images
+                .map((img, idx) => ({img, idx}))
+                .filter(o => o.img.name.toLowerCase().includes(q))
+                .map(o => o.idx);
+        }
+        resetGallery();
+    }, 150);
+
+    searchInput.addEventListener('input', onInput);
 }
