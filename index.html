@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Галерея изображений</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="form-container" aria-label="Добавление изображения">
+    <form id="add-form" class="add-form" novalidate>
+        <label for="search" class="visually-hidden">Название изображения</label>
+        <input type="search" id="search" name="search" placeholder="Название изображения" required/>
+
+        <label for="image-file" class="file-label">Выберите файл</label>
+        <input type="file" id="image-file" name="file" accept="image/*" required/>
+
+        <button id="add-btn" type="submit">Добавить в галерею</button>
+    </form>
+</header>
+
+<main  class="main-container" id="main-container">
+    <aside class="gallery" id="gallery" aria-label="Список изображений">
+        <div class="card-grid" id="card-grid" role="list"></div>
+    </aside>
+
+    <div class="resize-bar" id="resize-bar" aria-hidden="true" title="Изменить ширину панелей"></div>
+
+    <section class="preview" id="preview" aria-label="Превью изображения">
+        <div class="placeholder">Выберите изображение</div>
+    </section>
+</main >
+
+<button class="scroll-top" id="scroll-top" aria-hidden="true" title="Вверх">Up</button>
+<div class="drag-coords" id="drag-coords"></div>
+
+<script src="script.js"></script>
+</body>
+
+</html>
