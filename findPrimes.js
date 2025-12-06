@@ -1,12 +1,12 @@
-async function findPrimes(start, end, chunkSize = 10000) {
+async function findPrimes(start, end, chunkSize = 10000, batchSize = 10) {
     if (start < 2) start = 2;
 
     const totalNumbers = end - start + 1;
     let current = start;
     let processed = 0;
     let nextProgressMark = 10;
-
     const primes = [];
+    const running = new Set();
     const startTime = Date.now();
 
     function isPrime(num) {
@@ -21,19 +21,31 @@ async function findPrimes(start, end, chunkSize = 10000) {
         return true;
     }
 
-    async function processChunk(from, to) {
-        for (let n = from; n <= to; n++) {
-            if (isPrime(n)) primes.push(n);
+    function processChunk(from, to) {
+        return new Promise((resolve) => {
+            for (let n = from; n <= to; n++) {
+                if (isPrime(n)) {
+                    primes.push(n);
 
-            processed++;
-        }
+                }
+
+                processed++;
+            }
+            resolve();
+        })
+
     }
 
     while (current <= end) {
         const chunkEnd = Math.min(current + chunkSize - 1, end);
+        const promise = processChunk(current, chunkEnd);
 
-        await new Promise(resolve => setTimeout(resolve, 0));
-        await processChunk(current, chunkEnd);
+        running.add(promise);
+        promise.then(() => running.delete(promise));
+
+        if (running.size >= batchSize) {
+            await Promise.race(running);
+        }
 
         const progress = (processed / totalNumbers) * 100;
 
@@ -45,12 +57,17 @@ async function findPrimes(start, end, chunkSize = 10000) {
         current = chunkEnd + 1;
     }
 
-    const time = Date.now() - startTime;
+    await Promise.all(running);
 
+    const time = Date.now() - startTime;
     console.log(`Найдено простых чисел: ${primes.length}`);
     console.log(`Время выполнения: ${time} мс`);
 
     return primes;
 }
 
-findPrimes(1, 100000000,50000);
+findPrimes(1, 100000000, 1).then(() => {
+    console.log("well done")
+}).catch((error) => {
+    console.error(`Some error occurred: ${error}`);
+})
